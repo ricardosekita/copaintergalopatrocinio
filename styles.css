@@ -1,0 +1,527 @@
+/* ============================================================
+   Copa Intergalo Sub 16 — Futuristic Cloud Design
+   Paleta: preto profundo + dourado metálico clássico
+   ============================================================ */
+
+:root {
+  /* Color tokens */
+  --black-abyss: #000000;
+  --black-deep: #05060a;
+  --black-rich: #0a0b12;
+  --black-elev: #12131c;
+  --ink-900: #191a24;
+  --ink-700: #262735;
+
+  --gold-core: #D4AF37;
+  --gold-bright: #F2D57A;
+  --gold-hi: #FFF1BF;
+  --gold-deep: #8E6B1E;
+  --gold-dark: #6B4F12;
+
+  --text-primary: #F5F0E1;
+  --text-soft: #C9C4B5;
+  --text-mute: #6E6A5C;
+  --line-subtle: rgba(212, 175, 55, 0.12);
+  --line-mid: rgba(212, 175, 55, 0.28);
+  --line-strong: rgba(212, 175, 55, 0.55);
+
+  /* Spacing */
+  --sp-frame-y: 96px;
+  --sp-frame-x: 112px;
+  --sp-title-gap: 52px;
+  --sp-item-gap: 28px;
+
+  /* Type scale (px @ 1920×1080) */
+  --fs-hero: 132px;
+  --fs-display: 108px;
+  --fs-title: 68px;
+  --fs-subtitle: 44px;
+  --fs-body: 30px;
+  --fs-small: 24px;
+  --fs-micro: 18px;
+
+  /* Shadow + glow */
+  --glow-gold: 0 0 60px rgba(212, 175, 55, 0.35), 0 0 120px rgba(212, 175, 55, 0.12);
+  --glow-gold-soft: 0 0 24px rgba(212, 175, 55, 0.28);
+}
+
+/* ============================================================
+   Fonts
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--black-abyss);
+  color: var(--text-primary);
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" 1, "cv01" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Override deck-stage default bg */
+deck-stage::part(canvas) { background: transparent; }
+
+/* ============================================================
+   Slide base
+   ============================================================ */
+.slide {
+  background: var(--black-abyss);
+  color: var(--text-primary);
+  overflow: hidden;
+  font-family: 'Manrope', sans-serif;
+}
+
+.slide-inner {
+  position: absolute;
+  inset: 0;
+  padding: var(--sp-frame-y) var(--sp-frame-x);
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+/* ============================================================
+   Futuristic background layers (constellations + grid + glow)
+   Composited: radial base → grid → particles → vignette
+   ============================================================ */
+
+/* Base radial vignette with cool blue/gold core */
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(212, 175, 55, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 120% at 50% 50%, #0a0a12 0%, #030308 70%, #000000 100%);
+}
+
+/* 3D-ish perspective grid at the bottom — "digital pitch" */
+.bg-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  perspective: 900px;
+  perspective-origin: 50% 0%;
+  pointer-events: none;
+  opacity: 0.55;
+  mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+}
+.bg-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(212, 175, 55, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.45) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: rotateX(62deg) translateY(8%);
+  transform-origin: 50% 100%;
+  animation: gridDrift 24s linear infinite;
+}
+
+@keyframes gridDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 80px; }
+}
+
+/* Fine top grid (geometry lines) */
+.bg-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(212, 175, 55, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.055) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Particle / constellation dots */
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-particles .dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold-hi);
+  box-shadow: 0 0 8px var(--gold-core), 0 0 16px rgba(212, 175, 55, 0.4);
+  animation: twinkle 4s ease-in-out infinite;
+}
+.bg-particles .dot.big   { width: 3px; height: 3px; }
+.bg-particles .dot.med   { width: 2px; height: 2px; }
+.bg-particles .dot.small { width: 1px; height: 1px; background: #fff; box-shadow: 0 0 4px rgba(255,255,255,0.6); }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.35); }
+}
+
+/* Radial glow orb (the "light") — typically top-right */
+.bg-orb {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  top: -300px;
+  right: -250px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.06) 35%, transparent 65%);
+  pointer-events: none;
+  animation: orbPulse 8s ease-in-out infinite;
+}
+.bg-orb.bl {
+  top: auto; right: auto;
+  bottom: -350px; left: -280px;
+  width: 1100px; height: 1100px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.04) 40%, transparent 70%);
+  animation-delay: -3s;
+}
+
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.12); opacity: 1; }
+}
+
+/* Constellation connecting lines (SVG) */
+.bg-constellation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.bg-constellation line {
+  stroke: var(--gold-core);
+  stroke-width: 0.4;
+  stroke-dasharray: 3 4;
+  animation: dashFlow 30s linear infinite;
+}
+
+@keyframes dashFlow {
+  to { stroke-dashoffset: -100; }
+}
+
+/* Vignette on top */
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   Typography helpers
+   ============================================================ */
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-core);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.eyebrow::before {
+  content: '';
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-core));
+}
+
+.title-serif {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+  color: var(--text-primary);
+}
+
+.title-sans {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.body {
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  color: var(--text-soft);
+  font-weight: 300;
+  max-width: 30ch;
+}
+
+.subtitle {
+  font-size: var(--fs-subtitle);
+  line-height: 1.15;
+  font-weight: 300;
+  color: var(--text-soft);
+  letter-spacing: -0.01em;
+}
+
+/* Gold text treatments */
+.gold {
+  background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold-core) 30%, var(--gold-hi) 50%, var(--gold-core) 70%, var(--gold-deep) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShine 6s ease-in-out infinite;
+}
+@keyframes goldShine {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.gold-solid {
+  color: var(--gold-core);
+}
+
+/* ============================================================
+   Components
+   ============================================================ */
+
+/* Number display (giant stat) */
+.giant-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: var(--fs-hero);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, var(--gold-hi) 0%, var(--gold-core) 50%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.35));
+}
+.giant-number.mono {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 200;
+  letter-spacing: -0.04em;
+}
+
+/* Section chip / label */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid var(--line-mid);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.04);
+  backdrop-filter: blur(10px);
+}
+.chip .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-core);
+  box-shadow: 0 0 8px var(--gold-core);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.3); }
+}
+
+/* Ornate divider */
+.ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--gold-core);
+}
+.ornament .line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-core));
+}
+.ornament .line.right {
+  background: linear-gradient(to left, transparent, var(--gold-core));
+}
+.ornament .diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold-core);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px var(--gold-core);
+}
+
+/* Slide number & label at top */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.slide-header .idx {
+  color: var(--gold-core);
+}
+
+/* Corners — subtle futuristic tech frame on every slide */
+.corners {
+  position: absolute;
+  inset: 48px;
+  pointer-events: none;
+  z-index: 4;
+}
+.corners::before,
+.corners::after,
+.corners > span::before,
+.corners > span::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--gold-core);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.6;
+}
+.corners::before { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.corners::after  { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.corners > span::before { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; position: absolute; content: ''; width: 24px; height: 24px; }
+.corners > span::after  { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; position: absolute; content: ''; width: 24px; height: 24px; }
+.corners > span { position: absolute; inset: 0; }
+
+/* Data card — generic */
+.card {
+  background: linear-gradient(160deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.01) 100%);
+  border: 1px solid var(--line-subtle);
+  padding: 36px 40px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+.card:hover { border-color: var(--line-mid); }
+
+/* Progress bar — gold energy */
+.progress {
+  height: 2px;
+  background: var(--line-subtle);
+  position: relative;
+  overflow: hidden;
+}
+.progress .fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: linear-gradient(to right, var(--gold-deep), var(--gold-core), var(--gold-hi));
+  box-shadow: 0 0 12px var(--gold-core);
+}
+
+/* ============================================================
+   Slide transitions (cinematic)
+   ============================================================ */
+.slide:not([data-deck-active]) .fx { animation: none !important; }
+
+[data-deck-active] .fx-fade        { animation: fxFade 1200ms cubic-bezier(.2,.7,.2,1) both; }
+[data-deck-active] .fx-rise        { animation: fxRise 1100ms cubic-bezier(.2,.7,.2,1) both; }
+[data-deck-active] .fx-rise-slow   { animation: fxRise 1600ms cubic-bezier(.2,.7,.2,1) both; }
+[data-deck-active] .fx-zoom        { animation: fxZoom 1800ms cubic-bezier(.2,.6,.2,1) both; }
+[data-deck-active] .fx-glow        { animation: fxGlow 2500ms ease-out both, goldPulse 4s ease-in-out 2.5s infinite; }
+[data-deck-active] .fx-line        { animation: fxLine 1400ms cubic-bezier(.2,.7,.2,1) both; }
+[data-deck-active] .fx-scale       { animation: fxScale 1400ms cubic-bezier(.2,.7,.2,1) both; }
+
+[data-deck-active] .d-1 { animation-delay: 200ms; }
+[data-deck-active] .d-2 { animation-delay: 400ms; }
+[data-deck-active] .d-3 { animation-delay: 600ms; }
+[data-deck-active] .d-4 { animation-delay: 800ms; }
+[data-deck-active] .d-5 { animation-delay: 1000ms; }
+[data-deck-active] .d-6 { animation-delay: 1200ms; }
+[data-deck-active] .d-7 { animation-delay: 1400ms; }
+[data-deck-active] .d-8 { animation-delay: 1600ms; }
+
+@keyframes fxFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fxRise {
+  from { opacity: 0; transform: translateY(36px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+}
+@keyframes fxZoom {
+  from { opacity: 0; transform: scale(1.06); filter: blur(10px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+}
+@keyframes fxGlow {
+  from { opacity: 0; filter: drop-shadow(0 0 0 transparent); }
+  to   { opacity: 1; filter: drop-shadow(0 0 40px rgba(212,175,55,0.4)); }
+}
+@keyframes fxScale {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes fxLine {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes goldPulse {
+  0%, 100% { filter: drop-shadow(0 0 30px rgba(212,175,55,0.3)); }
+  50%      { filter: drop-shadow(0 0 60px rgba(212,175,55,0.55)); }
+}
+
+/* ============================================================
+   Table
+   ============================================================ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Manrope', sans-serif;
+}
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line-subtle);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--text-soft);
+}
+.data-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-core);
+  font-weight: 500;
+  border-bottom: 1px solid var(--line-mid);
+}
+.data-table td.num {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+.data-table td.delta {
+  color: var(--gold-bright);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ============================================================
+   Trophy / stadium SVG illustrations
+   ============================================================ */
+.illus {
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.35));
+}

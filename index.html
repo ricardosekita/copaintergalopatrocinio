@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Copa Intergalo Sub 16 — Estrutura Expandida 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="styles.css" />
+<script src="deck-stage.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ============================================================
+     Shared SVG defs for reuse across slides
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Gold gradient for fills -->
+    <linearGradient id="goldFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#8E6B1E"/>
+      <stop offset="30%"  stop-color="#D4AF37"/>
+      <stop offset="50%"  stop-color="#FFF1BF"/>
+      <stop offset="70%"  stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#6B4F12"/>
+    </linearGradient>
+    <linearGradient id="goldVert" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FFF1BF"/>
+      <stop offset="45%"  stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#6B4F12"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFE27A" stop-opacity="0.9"/>
+      <stop offset="40%"  stop-color="#D4AF37" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ==========================================================
+     SLIDE 1 — CAPA
+     ========================================================== -->
+<section class="slide" data-label="Capa">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p1"></div>
+  <svg class="bg-constellation" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <line x1="220" y1="180" x2="480" y2="320"/>
+    <line x1="480" y1="320" x2="680" y2="180"/>
+    <line x1="1400" y1="220" x2="1620" y2="340"/>
+    <line x1="1620" y1="340" x2="1780" y2="200"/>
+    <line x1="280" y1="820" x2="560" y2="920"/>
+    <line x1="1300" y1="860" x2="1580" y2="780"/>
+  </svg>
+  <div class="bg-vignette"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner" style="align-items:center; justify-content:center; text-align:center;">
+
+    <!-- Combined club logos — Inter SG × CAM -->
+    <div class="fx fx-glow d-1" style="display:flex; align-items:center; justify-content:center; gap: 44px; margin-bottom: 36px; position:relative;">
+      <div style="position:absolute; inset:-30px; background: radial-gradient(ellipse at center, rgba(212,175,55,0.28) 0%, transparent 65%); pointer-events:none;"></div>
+      <img src="assets/inter-sg.png" alt="Inter SG" style="height: 150px; width:auto; filter: drop-shadow(0 0 30px rgba(212,175,55,0.45)); position:relative; z-index:1;"/>
+      <div style="position:relative; z-index:1; font-family:'Cormorant Garamond', serif; font-size: 72px; font-style: italic; font-weight: 300;" class="gold">×</div>
+      <img src="assets/cam.png" alt="Clube Atlético Mineiro" style="height: 150px; width:auto; filter: drop-shadow(0 0 30px rgba(212,175,55,0.45)); position: relative; z-index: 1"/>
+    </div>
+
+    <div class="fx fx-rise d-2" style="margin-bottom: 28px;">
+      <span class="chip"><span class="dot"></span>Edição 2026 · Sub 16</span>
+    </div>
+
+    <h1 class="title-serif fx fx-rise d-3" style="font-size: 132px; margin: 0 0 14px;">
+      <span style="font-weight:300; font-style: italic; color: var(--text-primary);">Copa</span>
+      <span class="gold" style="font-weight:500; font-style: italic;">Intergalo</span>
+    </h1>
+
+    <div class="ornament fx fx-line d-4" style="margin-bottom: 40px;">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line right"></span>
+    </div>
+
+    <p class="subtitle fx fx-fade d-5" style="font-size: 38px; max-width: 1000px; margin: 0 auto; color: var(--text-soft);">
+      Estrutura expandida · Semifinais de Ouro e Prata
+    </p>
+
+    <div class="fx fx-fade d-6" style="position:absolute; bottom: 72px; left: 0; right: 0; display:flex; justify-content:space-between; padding: 0 var(--sp-frame-x); font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-mute);">
+      <span>21 · ABRIL · 2026</span>
+      <span style="color: var(--gold-core);">◆ DOSSIÊ OFICIAL</span>
+      <span>5 DIAS · 18 JOGOS · 8 CLUBES</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 2 — VISÃO DA EXPANSÃO (intro)
+     ========================================================== -->
+<section class="slide" data-label="Visão">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p2"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">01</span> · Introdução</span>
+      <span>Copa Intergalo Sub 16 · 2026</span>
+    </div>
+
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width: 1400px;">
+      <div class="eyebrow fx fx-rise d-1" style="margin-bottom: 40px;">Visão da expansão</div>
+
+      <h2 class="title-serif fx fx-rise d-2" style="font-size: 112px; margin: 0 0 56px;">
+        Um palco premium<br/>
+        para o <span class="gold" style="font-style: italic;">futuro</span> do<br/>
+        futebol brasileiro.
+      </h2>
+
+      <p class="fx fx-fade d-3" style="font-size: 34px; line-height: 1.5; font-weight: 300; max-width: 1100px; color: var(--text-soft);">
+        A nova estrutura da Copa Intergalo eleva o nível da competição, amplia
+        visibilidade e impacto econômico, e oferece a <span style="color: var(--gold-bright);">todas as equipes</span> a chance
+        de disputar uma final.
+      </p>
+    </div>
+
+    <!-- Numbers teaser at bottom -->
+    <div class="fx fx-rise d-5" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line-mid); padding-top: 40px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-mute); margin-bottom:10px;">Dias</div>
+        <div class="title-serif" style="font-size:64px; color: var(--gold-core);">5</div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-mute); margin-bottom:10px;">Jogos</div>
+        <div class="title-serif" style="font-size:64px; color: var(--gold-core);">18</div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-mute); margin-bottom:10px;">Clubes</div>
+        <div class="title-serif" style="font-size:64px; color: var(--gold-core);">8</div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-mute); margin-bottom:10px;">Atletas</div>
+        <div class="title-serif" style="font-size:64px; color: var(--gold-core);">192</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 3 — NOVA ESTRUTURA EM NÚMEROS
+     ========================================================== -->
+<section class="slide" data-label="Estrutura">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p3"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">02</span> · Estrutura</span>
+      <span>Mais jogos, mesma janela</span>
+    </div>
+
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="eyebrow fx fx-rise d-1" style="margin-bottom: 28px;">Nova estrutura</div>
+      <h2 class="title-serif fx fx-rise d-2" style="font-size: 84px; margin: 0 0 80px; max-width: 1400px;">
+        De 14 para <span class="gold" style="font-style: italic;">18 jogos</span>,<br/>
+        com mais transmissões e cobertura.
+      </h2>
+
+      <!-- Comparison rails -->
+      <div style="display:grid; grid-template-columns: 1fr auto 1fr; gap: 60px; align-items:center;">
+        <!-- Before -->
+        <div class="fx fx-rise d-3">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:16px; letter-spacing:0.28em; text-transform:uppercase; color:var(--text-mute); margin-bottom: 22px;">
+            · FORMATO ANTERIOR
+          </div>
+          <div style="display:flex; align-items:baseline; gap: 20px; margin-bottom: 24px;">
+            <span class="title-serif" style="font-size: 108px; color: var(--text-soft); font-weight: 300;">14</span>
+            <span style="font-size: 28px; color: var(--text-mute); font-weight: 300;">jogos</span>
+          </div>
+          <div style="color: var(--text-mute); font-size: 22px; font-weight: 300;">8 clubes · fase de grupos + final · 25h de transmissão</div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fx fx-glow d-4">
+          <svg width="120" height="60" viewBox="0 0 120 60">
+            <defs>
+              <linearGradient id="arrowGrad" x1="0" x2="1">
+                <stop offset="0%" stop-color="#6B4F12"/>
+                <stop offset="100%" stop-color="#FFF1BF"/>
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="30" x2="110" y2="30" stroke="url(#arrowGrad)" stroke-width="2"/>
+            <path d="M100 20 L115 30 L100 40" fill="none" stroke="#FFF1BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- After -->
+        <div class="fx fx-rise d-5">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:16px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold-core); margin-bottom: 22px;">
+            ◆ FORMATO EXPANDIDO
+          </div>
+          <div style="display:flex; align-items:baseline; gap: 20px; margin-bottom: 24px;">
+            <span class="giant-number" style="font-size: 160px;">18</span>
+            <span style="font-size: 28px; color: var(--gold-bright); font-weight: 300;">jogos</span>
+          </div>
+          <div style="color: var(--text-soft); font-size: 22px; font-weight: 300;">8 clubes · grupos + semifinais Ouro/Prata + finais ·50h de transmissão</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 4 — CRONOGRAMA DOS 5 DIAS
+     ========================================================== -->
+<section class="slide" data-label="Cronograma">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-particles" id="p4"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">03</span> · Cronograma</span>
+      <span>5 dias de competição</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Cronograma</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 56px;">
+      Cinco dias, <span class="gold" style="font-style: italic;">dezoito</span> partidas.
+    </h2>
+
+    <!-- Timeline -->
+    <div class="fx fx-rise d-3" style="display:grid; grid-template-columns: repeat(5, 1fr); gap: 24px; flex: 1;">
+      <!-- Day 1 -->
+      <div style="position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 14px;">DIA 01</div>
+        <div class="title-serif" style="font-size: 96px; color: var(--text-primary); font-weight: 300; line-height: 0.9; margin-bottom: 8px;">4</div>
+        <div style="font-size: 18px; color: var(--text-mute); margin-bottom: 24px; font-family:'JetBrains Mono',monospace; letter-spacing:0.15em;">JOGOS</div>
+        <div style="border-top: 1px solid var(--line-mid); padding-top: 16px;">
+          <div style="font-size: 22px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px;">Abertura</div>
+          <div style="font-size: 18px; color: var(--text-mute); line-height: 1.4;">Início da fase de grupos</div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 14px;">DIA 02</div>
+        <div class="title-serif" style="font-size: 96px; color: var(--text-primary); font-weight: 300; line-height: 0.9; margin-bottom: 8px;">4</div>
+        <div style="font-size: 18px; color: var(--text-mute); margin-bottom: 24px; font-family:'JetBrains Mono',monospace; letter-spacing:0.15em;">JOGOS</div>
+        <div style="border-top: 1px solid var(--line-mid); padding-top: 16px;">
+          <div style="font-size: 22px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px;">Fase de grupos</div>
+          <div style="font-size: 18px; color: var(--text-mute); line-height: 1.4;">Segunda rodada</div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 14px;">DIA 03</div>
+        <div class="title-serif" style="font-size: 96px; color: var(--text-primary); font-weight: 300; line-height: 0.9; margin-bottom: 8px;">4</div>
+        <div style="font-size: 18px; color: var(--text-mute); margin-bottom: 24px; font-family:'JetBrains Mono',monospace; letter-spacing:0.15em;">JOGOS</div>
+        <div style="border-top: 1px solid var(--line-mid); padding-top: 16px;">
+          <div style="font-size: 22px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px;">Rodada final</div>
+          <div style="font-size: 18px; color: var(--text-mute); line-height: 1.4;">Definição dos classificados</div>
+        </div>
+      </div>
+
+      <!-- Day 4 — highlighted -->
+      <div style="position:relative; display:flex; flex-direction:column; background: linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.01)); border: 1px solid var(--line-mid); padding: 24px; margin: -24px -12px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 14px;">◆ DIA 04</div>
+        <div class="giant-number" style="font-size: 96px; line-height: 0.9; margin-bottom: 8px;">4</div>
+        <div style="font-size: 18px; color: var(--gold-bright); margin-bottom: 24px; font-family:'JetBrains Mono',monospace; letter-spacing:0.15em;">JOGOS</div>
+        <div style="border-top: 1px solid var(--line-mid); padding-top: 16px;">
+          <div style="font-size: 22px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px;">Semifinais</div>
+          <div style="font-size: 18px; color: var(--text-soft); line-height: 1.4;">2 Ouro + 2 Prata</div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:flex; flex-direction:column; background: linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.01)); border: 1px solid var(--line-mid); padding: 24px; margin: -24px -12px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 14px;">◆ DIA 05</div>
+        <div class="giant-number" style="font-size: 96px; line-height: 0.9; margin-bottom: 8px;">2</div>
+        <div style="font-size: 18px; color: var(--gold-bright); margin-bottom: 24px; font-family:'JetBrains Mono',monospace; letter-spacing:0.15em;">JOGOS</div>
+        <div style="border-top: 1px solid var(--line-mid); padding-top: 16px;">
+          <div style="font-size: 22px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px;">Finais + Premiação</div>
+          <div style="font-size: 18px; color: var(--text-soft); line-height: 1.4;">Final Ouro, Final Prata e encerramento oficial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- progress bar connector -->
+    <div class="fx fx-scale d-6" style="transform-origin:left; margin-top: 40px;">
+      <div class="progress"><div class="fill" style="width:100%"></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 5 — FORMATO DE CLASSIFICAÇÃO
+     ========================================================== -->
+<section class="slide" data-label="Classificação">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p5"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">04</span> · Classificação</span>
+      <span>Fase de grupos → Semifinais → Finais</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 32px; margin-bottom: 20px;">Formato</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 56px;">
+      Todos têm <span class="gold" style="font-style: italic;">chance</span> de disputar uma final.
+    </h2>
+
+    <!-- Bracket visualization -->
+    <div class="fx fx-rise d-3" style="flex:1; display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 32px; align-items:center;">
+
+      <!-- Groups -->
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; text-transform:uppercase; color: var(--text-mute); margin-bottom: 6px;">01 · Grupos</div>
+        <div class="card" style="padding: 24px 28px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 36px; color: var(--gold-core); margin-bottom: 12px; font-style: italic;">Grupo A</div>
+          <div style="display:flex; flex-direction:column; gap: 8px; font-size:18px; color: var(--text-soft);">
+            <div>◇ Clube 1</div>
+            <div>◇ Clube 2</div>
+            <div>◇ Clube 3</div>
+            <div>◇ Clube 4</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 24px 28px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 36px; color: var(--gold-core); margin-bottom: 12px; font-style: italic;">Grupo B</div>
+          <div style="display:flex; flex-direction:column; gap: 8px; font-size:18px; color: var(--text-soft);">
+            <div>◇ Clube 5</div>
+            <div>◇ Clube 6</div>
+            <div>◇ Clube 7</div>
+            <div>◇ Clube 8</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Semifinais -->
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; text-transform:uppercase; color: var(--text-mute); margin-bottom: 6px;">02 · Semifinais</div>
+        <div class="card" style="padding: 24px 28px; border-color: var(--line-mid);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 30px; color: var(--gold-bright); margin-bottom: 10px; font-style: italic;">Semi · Ouro</div>
+          <div style="font-size:17px; color: var(--text-soft); line-height: 1.5;">1º A vs 1º B<br/>1º B vs 1º A</div>
+        </div>
+        <div class="card" style="padding: 24px 28px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 30px; color: var(--gold-core); margin-bottom: 10px; font-style: italic; opacity: 0.8;">Semi · Prata</div>
+          <div style="font-size:17px; color: var(--text-soft); line-height: 1.5;">2º A vs 2º B<br/>2º B vs 2º A</div>
+        </div>
+      </div>
+
+      <!-- Finais -->
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; text-transform:uppercase; color: var(--text-mute); margin-bottom: 6px;">03 · Finais</div>
+        <div class="card" style="padding: 28px; border-color: var(--gold-core); background: linear-gradient(160deg, rgba(212,175,55,0.12), rgba(212,175,55,0.02));">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 38px; color: var(--gold-hi); margin-bottom: 8px; font-style: italic;">Final · Ouro</div>
+          <div style="font-size:18px; color: var(--text-soft);">Título da Copa</div>
+        </div>
+        <div class="card" style="padding: 28px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size: 38px; color: var(--gold-core); margin-bottom: 8px; font-style: italic;">Final · Prata</div>
+          <div style="font-size:18px; color: var(--text-soft);">Disputa do 3º lugar</div>
+        </div>
+      </div>
+
+      <!-- Trophies -->
+      <div style="display:flex; flex-direction:column; gap: 24px; align-items:center;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; text-transform:uppercase; color: var(--text-mute); margin-bottom: 6px; align-self: flex-start;">04 · Troféus</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap: 36px;">
+          <!-- Gold -->
+          <svg class="illus fx fx-glow d-5" width="120" height="150" viewBox="0 0 120 150">
+            <circle cx="60" cy="60" r="70" fill="url(#goldGlow)" opacity="0.8"/>
+            <path d="M30 25 L90 25 L87 80 Q87 105 60 108 Q33 105 33 80 Z" fill="url(#goldVert)"/>
+            <rect x="53" y="108" width="14" height="16" fill="url(#goldVert)"/>
+            <path d="M38 124 L82 124 L87 138 L33 138 Z" fill="url(#goldVert)"/>
+          </svg>
+          <!-- Silver-tinted gold for Prata; still gold-family per brief -->
+          <svg class="illus fx fx-glow d-6" width="100" height="130" viewBox="0 0 120 150" style="opacity: 0.75; filter: drop-shadow(0 0 30px rgba(212,175,55,0.25));">
+            <path d="M30 25 L90 25 L87 80 Q87 105 60 108 Q33 105 33 80 Z" fill="url(#goldVert)" opacity="0.85"/>
+            <rect x="53" y="108" width="14" height="16" fill="url(#goldVert)" opacity="0.85"/>
+            <path d="M38 124 L82 124 L87 138 L33 138 Z" fill="url(#goldVert)" opacity="0.85"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 6 — OURO E PRATA (conceito)
+     ========================================================== -->
+<section class="slide" data-label="Ouro e Prata">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p6"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner" style="justify-content:center;">
+    <div class="slide-header fx fx-fade" style="position:absolute; top: var(--sp-frame-y); left: var(--sp-frame-x); right: var(--sp-frame-x);">
+      <span><span class="idx">05</span> · Filosofia</span>
+      <span>Dois títulos, uma mesma grandeza</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items:center;">
+
+      <div class="fx fx-rise d-1">
+        <div style="text-align:center;">
+          <svg class="illus fx fx-glow d-3" width="280" height="340" viewBox="0 0 220 280" style="margin-bottom: 28px;">
+            <circle cx="110" cy="140" r="160" fill="url(#goldGlow)" opacity="1"/>
+            <path d="M60 50 L160 50 L155 140 Q155 180 110 185 Q65 180 65 140 Z" fill="url(#goldVert)" stroke="#FFF1BF" stroke-width="1.2"/>
+            <path d="M60 65 Q25 80 30 115 Q35 140 60 135" fill="none" stroke="url(#goldVert)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M160 65 Q195 80 190 115 Q185 140 160 135" fill="none" stroke="url(#goldVert)" stroke-width="6" stroke-linecap="round"/>
+            <rect x="100" y="185" width="20" height="30" fill="url(#goldVert)"/>
+            <path d="M70 215 L150 215 L160 240 L60 240 Z" fill="url(#goldVert)"/>
+            <rect x="55" y="240" width="110" height="14" fill="url(#goldVert)"/>
+          </svg>
+          <div class="eyebrow" style="justify-content:center; margin-bottom: 20px;"><span></span>Final Ouro</div>
+          <h3 class="title-serif gold" style="font-size: 88px; margin: 0 0 20px; font-style: italic;">O Título</h3>
+          <p style="font-size: 26px; color: var(--text-soft); font-weight: 300; max-width: 460px; margin: 0 auto; line-height: 1.45;">
+            Campeões dos grupos disputam o título principal da Copa.
+          </p>
+        </div>
+      </div>
+
+      <div class="fx fx-rise d-2">
+        <div style="text-align:center;">
+          <svg class="illus fx fx-glow d-4" width="240" height="300" viewBox="0 0 220 280" style="opacity: 0.82; margin-bottom: 28px; filter: drop-shadow(0 0 30px rgba(212,175,55,0.25));">
+            <circle cx="110" cy="140" r="140" fill="url(#goldGlow)" opacity="0.6"/>
+            <path d="M60 50 L160 50 L155 140 Q155 180 110 185 Q65 180 65 140 Z" fill="url(#goldVert)"/>
+            <path d="M60 65 Q25 80 30 115 Q35 140 60 135" fill="none" stroke="url(#goldVert)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M160 65 Q195 80 190 115 Q185 140 160 135" fill="none" stroke="url(#goldVert)" stroke-width="6" stroke-linecap="round"/>
+            <rect x="100" y="185" width="20" height="30" fill="url(#goldVert)"/>
+            <path d="M70 215 L150 215 L160 240 L60 240 Z" fill="url(#goldVert)"/>
+            <rect x="55" y="240" width="110" height="14" fill="url(#goldVert)"/>
+          </svg>
+          <div class="eyebrow" style="justify-content:center; margin-bottom: 20px;"><span></span>Final Prata</div>
+          <h3 class="title-serif" style="font-size: 88px; margin: 0 0 20px; color: var(--gold-core); font-style: italic;">O Prestígio</h3>
+          <p style="font-size: 26px; color: var(--text-soft); font-weight: 300; max-width: 460px; margin: 0 auto; line-height: 1.45;">
+            Vice-líderes dos grupos disputam o 3º lugar geral do torneio.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fx fx-fade d-6" style="position:absolute; bottom: 80px; left: 0; right: 0; text-align:center;">
+      <div class="ornament" style="justify-content:center;">
+        <span class="line"></span><span class="diamond"></span><span class="line right"></span>
+      </div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size: 32px; font-style: italic; color: var(--text-soft); margin-top: 20px;">
+        "Todos têm chance de brilhar."
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 8 — TRANSMISSÕES
+     ========================================================== -->
+<section class="slide" data-label="Transmissões">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p8"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">07</span> · Transmissões</span>
+      <span>Cobertura ampliada</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 32px; margin-bottom: 18px;">Transmissões</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 68px; margin: 0 0 40px; max-width: 1400px; line-height: 1.05;">
+      Mais horas, mais canais,<br/>
+      <span class="gold" style="font-style: italic;">mais alcance.</span>
+    </h2>
+
+    <div style="flex:1; display:grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 32px;">
+      <div class="card fx fx-rise d-3">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">01 · JOGOS</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">18 <span style="color: var(--text-mute); font-size: 32px;">jogos</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Numero de jogos, visibilidade alta dos talentos.</div>
+      </div>
+      <div class="card fx fx-rise d-4">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">02 · STREAMING</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">100<span style="color:var(--gold-bright);">%</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Todos os 18 jogos disponíveis em plataformas digitais globais.</div>
+      </div>
+      <div class="card fx fx-rise d-5">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">03 · REDES</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">7–10<span style="color:var(--gold-bright); font-size: 40px; margin-left: 8px;">mi</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Impressões projetadas em redes sociais por edição.</div>
+      </div>
+      <div class="card fx fx-rise d-5">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">04 · IMPRENSA</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">10<span style="color:var(--gold-bright);">+</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Jornalistas credenciados na cobertura presencial.</div>
+      </div>
+      <div class="card fx fx-rise d-6">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">05 · HORAS</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">50<span style="color:var(--gold-bright); font-size: 32px; margin-left: 4px;">h</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Tempo total de transmissão contando jogos e programas.</div>
+      </div>
+      <div class="card fx fx-rise d-7">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">06 · ENGAJAMENTO</div>
+        <div class="title-serif" style="font-size: 72px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">300–400<span style="color:var(--gold-bright); font-size: 32px; margin-left: 6px;">k</span></div>
+        <div style="font-size: 20px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Interações, compartilhamentos e comentários digitais.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 8B — CRAQUE DA PARTIDA & PRODUÇÃO
+     ========================================================== -->
+<section class="slide" data-label="Craque da partida">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p8b"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">08</span> · Produção</span>
+      <span>Craque da partida e narrativa</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Produção</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 64px; max-width: 1400px;">
+      Cada jogo com <span class="gold" style="font-style: italic;">narrativa própria.</span>
+    </h2>
+
+    <div style="flex:1; display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px;">
+
+      <!-- Craque hero card -->
+      <div class="card fx fx-rise d-3" style="display:flex; flex-direction:column; justify-content:space-between; padding: 48px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 24px;">◆ CRAQUE DA PARTIDA</div>
+          <div class="title-serif" style="font-size: 64px; line-height: 1.05; color: var(--text-primary); margin-bottom: 24px;">
+            Um destaque <span class="gold" style="font-style: italic;">por jogo</span>,<br/>
+            18 histórias na edição.
+          </div>
+          <div style="font-size: 22px; color: var(--text-soft); font-weight: 300; line-height: 1.5; max-width: 540px;">
+            Premiação oficial em campo, troféu individual e citação na transmissão e no boletim pós-jogo.
+          </div>
+        </div>
+        <div style="display:flex; gap: 40px; padding-top: 32px; border-top: 1px solid var(--line-mid);">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size: 56px; color: var(--gold-core); font-style:italic;">18</div>
+            <div style="font-size: 16px; color: var(--text-mute); font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-transform:uppercase;">Eleitos</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size: 56px; color: var(--gold-core); font-style:italic;">+1</div>
+            <div style="font-size: 16px; color: var(--text-mute); font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-transform:uppercase;">Craque da Copa</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Production cards -->
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <div class="card fx fx-rise d-4">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 16px;">CÂMERAS</div>
+          <div class="title-serif" style="font-size: 56px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">6<span style="color:var(--text-mute); font-size: 24px; margin-left: 8px;">por jogo</span></div>
+          <div style="font-size: 18px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Multicâmera com replays, drone na abertura e finais.</div>
+        </div>
+        <div class="card fx fx-rise d-5">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 16px;">NARRAÇÃO</div>
+          <div class="title-serif" style="font-size: 56px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">100<span style="color:var(--gold-bright);">%</span></div>
+          <div style="font-size: 18px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Todos os jogos com narrador + comentarista.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <div class="card fx fx-rise d-5">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 16px;">PROGRAMAS</div>
+          <div class="title-serif" style="font-size: 56px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">Pré <span style="color:var(--text-mute);">·</span> Pós</div>
+          <div style="font-size: 18px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Análises, entrevistas e bastidores antes e depois de cada rodada.</div>
+        </div>
+        <div class="card fx fx-rise d-6">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 16px;">CORTES DIGITAIS</div>
+          <div class="title-serif" style="font-size: 56px; color: var(--text-primary); font-weight: 400; line-height: 1; margin-bottom: 12px;">200<span style="color:var(--gold-bright);">+</span></div>
+          <div style="font-size: 18px; color: var(--text-soft); font-weight: 300; line-height: 1.4;">Highlights, lances e momentos do craque para redes sociais.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 8C — ESTRUTURA DOS CLUBES CONVIDADOS
+     ========================================================== -->
+<section class="slide" data-label="Estrutura clubes">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p8c"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">09</span> · Estrutura</span>
+      <span>Clubes convidados</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Para os clubes convidados</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 64px; max-width: 1400px;">
+      Vir disputar a Copa<br/>
+      <span class="gold" style="font-style: italic;">sem se preocupar com nada.</span>
+    </h2>
+
+    <div style="flex:1; display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+
+      <div class="card fx fx-rise d-3" style="display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 18px;">01 · COPA</div>
+        <div class="title-serif" style="font-size: 44px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 20px;">Toda logística<br/>feita por nós.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 12px;">
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Recepção e credenciamento das delegações</li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"></li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Coordenação operacional e arbitragem</li>
+        </ul>
+      </div>
+
+      <div class="card fx fx-rise d-4" style="display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 18px;">◆ 02 · HOSPEDAGEM</div>
+        <div class="title-serif" style="font-size: 44px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 20px;">Hotel oficial,<br/>pago pela Copa.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 12px;">
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Acomodação para 24 atletas + comissão</li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Diárias durante toda a participação</li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Sala para preleção e fisioterapia</li>
+        </ul>
+      </div>
+
+      <div class="card fx fx-rise d-5" style="display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 18px;">◆ 03 · ALIMENTAÇÃO</div>
+        <div class="title-serif" style="font-size: 44px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 20px;">Cardápio esportivo,<br/>3 refeições/dia.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 12px;">
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Café, almoço e jantar inclusos</li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Lanche pré e pós-jogo no estádio</li>
+          <li style="font-size: 19px; color: var(--text-soft); font-weight: 300; padding-left: 20px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Hidratação e suplementação em campo</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="fx fx-fade d-6" style="margin-top: 36px; font-family:'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.28em; color: var(--gold-bright); text-transform:uppercase;">
+      ◆ Pacote completo · clube só leva o time
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 13 — VISIBILIDADE
+     ========================================================== -->
+<section class="slide" data-label="Visibilidade">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p13"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">12</span> · Visibilidade</span>
+      <span>Alcance ampliado</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Visibilidade</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 64px;">
+      Quatro indicadores, <span class="gold" style="font-style: italic;">uma direção.</span>
+    </h2>
+
+    <div class="fx fx-rise d-3" style="flex:1; display:grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+
+      <div style="display:flex; flex-direction:column; justify-content:flex-end; padding: 40px 0; border-top: 1px solid var(--line-mid); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.22em; color: var(--gold-core); margin-bottom: 16px; text-transform:uppercase;">Impressões</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 1; margin-bottom: 14px;">
+          <span style="color:var(--gold-bright);">10</span><span style="color:var(--text-mute); font-size: 44px;">mi</span>
+        </div>
+        <div style="font-size: 18px; color: var(--text-soft); font-weight: 300;">Redes sociais — de 5–8mi para <span style="color:var(--gold-bright);">7–10mi</span>.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; justify-content:flex-end; padding: 40px 0; border-top: 1px solid var(--line-mid); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.22em; color: var(--gold-core); margin-bottom: 16px; text-transform:uppercase;">Imprensa</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 1; margin-bottom: 14px;">
+          <span style="color:var(--gold-bright);">10</span><span style="color:var(--gold-bright); font-size:44px;">+</span>
+        </div>
+        <div style="font-size: 18px; color: var(--text-soft); font-weight: 300;">Jornalistas credenciados — de <span style="color:var(--text-mute);">5+</span> para <span style="color:var(--gold-bright);">10+</span>.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; justify-content:flex-end; padding: 40px 0; border-top: 1px solid var(--line-mid); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.22em; color: var(--gold-core); margin-bottom: 16px; text-transform:uppercase;">Engajamento</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 1; margin-bottom: 14px;">
+          <span style="color:var(--gold-bright);">400</span><span style="color:var(--text-mute); font-size: 44px;">k</span>
+        </div>
+        <div style="font-size: 18px; color: var(--text-soft); font-weight: 300;">Interações digitais — <span style="color:var(--gold-bright);">+33%</span> sobre o formato anterior.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; justify-content:flex-end; padding: 40px 0; border-top: 1px solid var(--line-mid); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.22em; color: var(--gold-core); margin-bottom: 16px; text-transform:uppercase;">Transmissão</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 1; margin-bottom: 14px;">
+          <span style="color:var(--gold-bright);">50</span><span style="color:var(--text-mute); font-size:44px;">h</span>
+        </div>
+        <div style="font-size: 18px; color: var(--text-soft); font-weight: 300;">Horas totais de conteúdo — de <span style="color:var(--text-mute);">25h</span> para <span style="color:var(--gold-bright);">50h</span>.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 14 — BENEFÍCIOS (CLUBES E ATLETAS)
+     ========================================================== -->
+<section class="slide" data-label="Benefícios">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p14"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">13</span> · Benefícios</span>
+      <span>Para clubes, atletas e a comunidade do futebol</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Benefícios</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 56px;">
+      Valor distribuído por <span class="gold" style="font-style: italic;">todo</span> o ecossistema.
+    </h2>
+
+    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;">
+
+      <div class="fx fx-rise d-3" style="border-top: 1px solid var(--gold-core); padding-top: 32px; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 20px;">◆ 01 · ATLETAS</div>
+        <div class="title-serif" style="font-size: 48px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 28px;">192 jogadores,<br/>mais jogos disputados.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 18px;">
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Mais partidas oficiais por atleta</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Visibilidade para olheiros e imprensa</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Desenvolvimento técnico acelerado</li>
+        </ul>
+      </div>
+
+      <div class="fx fx-rise d-4" style="border-top: 1px solid var(--gold-core); padding-top: 32px; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 20px;">◆ 02 · CLUBES</div>
+        <div class="title-serif" style="font-size: 48px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 28px;">Marca, método<br/>e formação valorizados.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 18px;">
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Exposição de metodologias de base</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Valorização de atletas e da marca do clube</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Prestígio das finais Ouro e Prata</li>
+        </ul>
+      </div>
+
+      <div class="fx fx-rise d-5" style="border-top: 1px solid var(--gold-core); padding-top: 32px; display:flex; flex-direction:column;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-bright); margin-bottom: 20px;">◆ 03 · MÍDIA &amp; VISIBILIDADE</div>
+        <div class="title-serif" style="font-size: 48px; color: var(--text-primary); font-weight: 400; line-height: 1.05; margin-bottom: 28px;">Cobertura ampla,<br/>marca em destaque.</div>
+        <ul style="list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap: 18px;">
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Transmissão ao vivo de todos os jogos</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Cobertura por imprensa especializada</li>
+          <li style="font-size: 22px; color: var(--text-soft); font-weight: 300; padding-left: 24px; position:relative;"><span style="position:absolute; left: 0; color: var(--gold-core);">◇</span>Conteúdo diário em redes oficiais</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 16 — PROJEÇÃO 3 ANOS
+     ========================================================== -->
+<section class="slide" data-label="Projeção 3 anos">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-particles" id="p16"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner">
+    <div class="slide-header fx fx-fade">
+      <span><span class="idx">15</span> · Projeção</span>
+      <span>Visão de 3 anos</span>
+    </div>
+
+    <div class="eyebrow fx fx-rise d-1" style="margin-top: 40px; margin-bottom: 24px;">Projeção do torneio</div>
+    <h2 class="title-serif fx fx-rise d-2" style="font-size: 76px; margin: 0 0 72px;">
+      Rumo à <span class="gold" style="font-style: italic;">referência nacional</span><br/>
+      no futebol de base até 2028.
+    </h2>
+
+    <div class="fx fx-rise d-3" style="flex:1; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; align-items:stretch;">
+
+      <!-- Year 1 -->
+      <div style="display:flex; flex-direction:column; padding: 40px 36px; border: 1px solid var(--line-subtle); background: linear-gradient(180deg, rgba(212,175,55,0.04), transparent); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 20px;">ANO 01 · 2026</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 0.9; margin-bottom: 8px;">8</div>
+        <div style="font-size: 22px; color: var(--text-mute); margin-bottom: 40px; font-weight: 300;">clubes</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size: 44px; color: var(--gold-core); font-weight: 500; margin-bottom: 16px; font-style: italic; line-height: 1.1;">5 dias · 18 jogos</div>
+        <div style="font-size: 18px; color: var(--text-soft); line-height: 1.5; font-weight: 300;">Semifinais Ouro e Prata estabelecidas · 17–23k espectadores presenciais</div>
+        <div class="progress" style="margin-top: auto;"><div class="fill" style="width: 50%;"></div></div>
+      </div>
+
+      <!-- Year 2 -->
+      <div style="display:flex; flex-direction:column; padding: 40px 36px; border: 1px solid var(--line-mid); background: linear-gradient(180deg, rgba(212,175,55,0.08), transparent); position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-core); margin-bottom: 20px;">ANO 02 · 2027</div>
+        <div class="title-serif" style="font-size: 88px; color: var(--text-primary); font-weight: 300; line-height: 0.9; margin-bottom: 8px;">12</div>
+        <div style="font-size: 22px; color: var(--text-mute); margin-bottom: 40px; font-weight: 300;">clubes</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size: 44px; color: var(--gold-core); font-weight: 500; margin-bottom: 16px; font-style: italic; line-height: 1.1;">8 dias · 28 jogos</div>
+        <div style="font-size: 18px; color: var(--text-soft); line-height: 1.5; font-weight: 300;">Expansão regional · cobertura nacional ampliada · 25–30k espectadores</div>
+        <div class="progress" style="margin-top: auto;"><div class="fill" style="width: 75%;"></div></div>
+      </div>
+
+      <!-- Year 3 -->
+      <div style="display:flex; flex-direction:column; padding: 40px 36px; border: 1px solid var(--gold-core); background: linear-gradient(180deg, rgba(212,175,55,0.14), rgba(212,175,55,0.02)); position:relative; box-shadow: var(--glow-gold-soft);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.28em; color: var(--gold-hi); margin-bottom: 20px;">◆ ANO 03 · 2028</div>
+        <div class="giant-number" style="font-size: 96px; line-height: 0.9; margin-bottom: 8px;">16</div>
+        <div style="font-size: 22px; color: var(--gold-bright); margin-bottom: 40px; font-weight: 300;">clubes</div>
+        <div class="title-serif gold" style="font-size: 44px; font-weight: 500; margin-bottom: 16px; font-style: italic; line-height: 1.1;">10 dias · 40 jogos</div>
+        <div style="font-size: 18px; color: var(--text-soft); line-height: 1.5; font-weight: 300;">Referência nacional no futebol de base · 35–40k espectadores · cobertura completa</div>
+        <div class="progress" style="margin-top: auto;"><div class="fill" style="width: 100%;"></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================
+     SLIDE 17 — ENCERRAMENTO
+     ========================================================== -->
+<section class="slide" data-label="Encerramento">
+  <div class="bg-base"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb bl"></div>
+  <div class="bg-particles" id="p17"></div>
+  <svg class="bg-constellation" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <line x1="180" y1="240" x2="420" y2="360"/>
+    <line x1="1420" y1="260" x2="1660" y2="380"/>
+    <line x1="320" y1="820" x2="600" y2="940"/>
+  </svg>
+  <div class="bg-vignette"></div>
+  <div class="corners"><span></span></div>
+
+  <div class="slide-inner" style="align-items:center; justify-content:center; text-align:center;">
+
+    <!-- Combined club logos -->
+    <div class="fx fx-glow d-1" style="display:flex; align-items:center; justify-content:center; gap: 56px; margin-bottom: 56px; position:relative;">
+      <div style="position:absolute; inset:-40px; background: radial-gradient(ellipse at center, rgba(212,175,55,0.28) 0%, transparent 65%); pointer-events:none;"></div>
+      <img src="assets/inter-sg.png" alt="Inter SG" style="height: 180px; width:auto; filter: drop-shadow(0 0 30px rgba(212,175,55,0.45)); position:relative; z-index:1;"/>
+      <div style="position:relative; z-index:1; font-family:'Cormorant Garamond', serif; font-size: 80px; font-style: italic; font-weight: 300;" class="gold">×</div>
+      <img src="assets/cam.png" alt="CAM" style="height: 180px; width:auto; filter: drop-shadow(0 0 30px rgba(212,175,55,0.45)); position:relative; z-index:1;"/>
+    </div>
+
+    <div class="ornament fx fx-line d-2" style="margin-bottom: 36px;">
+      <span class="line"></span><span class="diamond"></span><span class="line right"></span>
+    </div>
+
+    <h2 class="title-serif fx fx-rise d-3" style="font-size: 120px; margin: 0 0 32px; max-width: 1500px; line-height: 1.14;">
+      <span style="font-style: italic; color: var(--text-primary);">O futuro do</span><br/>
+      <span class="gold" style="font-style: italic; font-weight: 500;">futebol de base</span><br/>
+      <span style="font-style: italic; color: var(--text-primary);">começa aqui.</span>
+    </h2>
+
+    <div class="ornament fx fx-line d-4" style="margin-top: 40px;">
+      <span class="line"></span><span class="diamond"></span><span class="line right"></span>
+    </div>
+
+    <div class="fx fx-fade d-5" style="position:absolute; bottom: 72px; left: 0; right: 0; display:flex; justify-content:space-between; padding: 0 var(--sp-frame-x); font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-mute);">
+      <span>COPA INTERGALO SUB 16</span>
+      <span style="color: var(--gold-core);">◆ 2026 · 2027 · 2028</span>
+      <span>OBRIGALO!</span>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<!-- ============================================================
+     Particle generator — spreads dots across each slide's particle layer
+     ============================================================ -->
+<script>
+(function() {
+  function seedParticles() {
+    document.querySelectorAll('.bg-particles').forEach(function(host) {
+      if (host.dataset.seeded) return;
+      host.dataset.seeded = '1';
+      var n = 55;
+      for (var i = 0; i < n; i++) {
+        var d = document.createElement('span');
+        var size = Math.random();
+        d.className = 'dot ' + (size > 0.85 ? 'big' : size > 0.55 ? 'med' : 'small');
+        d.style.left = (Math.random() * 100) + '%';
+        d.style.top  = (Math.random() * 100) + '%';
+        d.style.animationDelay = (Math.random() * 4) + 's';
+        d.style.animationDuration = (3 + Math.random() * 4) + 's';
+        host.appendChild(d);
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', seedParticles);
+  } else {
+    seedParticles();
+  }
+})();
+</script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+
+</body>
+</html>
